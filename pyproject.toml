@@ -1,0 +1,33 @@
+[project]
+name = "workspace"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "agent-returns",
+    "mcp-orders",
+]
+
+[dependency-groups]
+dev = [
+    { include-group = "lint" },
+    { include-group = "test" },
+    "ipykernel>=7.2.0",
+]
+lint = [
+    "ruff>=0.15.12",
+]
+test = [
+    "pytest>=9.0.3",
+]
+
+[tool.uv.sources]
+mcp-orders = { workspace = true }
+agent-returns = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+    "services/mcp-orders",
+    "services/agent-returns",
+]

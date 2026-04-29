@@ -1,0 +1,8 @@
+[project]
+name = "agent-returns"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "google-adk[a2a]>=1.31.1",
+    "uvicorn>=0.46.0",
+]

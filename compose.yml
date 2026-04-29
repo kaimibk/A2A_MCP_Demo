@@ -1,0 +1,15 @@
+services:
+  mcp-orders:
+    build: ./services/mcp-orders
+    ports:
+      - "8000:8000"
+    networks:
+      - agent-network
+
+  agent-returns:
+    build: ./services/agent-returns
+    ports:
+      - "8002:8000"
+
+networks:
+  agent-network: {}
