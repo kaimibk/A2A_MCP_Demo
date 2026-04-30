@@ -12,4 +12,4 @@ root_agent = Agent(
     instruction="Strict Policy: Electronics have a 14-day return window and require photo proof of damage.",
 )
 
-a2a_app = to_a2a(root_agent, host="0.0.0.0", port=8000)
+a2a_app = to_a2a(root_agent, host="host.docker.internal", port=8002)
