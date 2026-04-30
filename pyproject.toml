@@ -5,7 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "agent-returns",
+    "agent_returns",
+    "google-adk>=1.31.1",
     "mcp-orders",
 ]
 
@@ -29,5 +30,6 @@ agent-returns = { workspace = true }
 [tool.uv.workspace]
 members = [
     "services/mcp-orders",
-    "services/agent-returns",
+    "services/agents/agent_returns",
+    "services/agents/agent_support",
 ]

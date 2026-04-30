@@ -7,9 +7,15 @@ services:
       - agent-network
 
   agent-returns:
-    build: ./services/agent-returns
+    # See agent card: http://localhost:8002/.well-known/agent-card.json
+    build: ./services/agents/agent_returns
     ports:
       - "8002:8000"
+    environment:
+      - OPENAI_API_BASE=http://host.docker.internal:11434/v1
+      - OPENAI_API_KEY=ollama
+    networks:
+      - agent-network
 
 networks:
   agent-network: {}

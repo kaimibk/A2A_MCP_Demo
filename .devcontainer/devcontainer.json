@@ -10,7 +10,7 @@
     "configureZshAsDefaultShell": true
   },
 	"ghcr.io/devcontainers/features/github-cli:1": {},
-	"ghcr.io/postfinance/devcontainer-features/docker-out:1": {}
+	"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
   "customizations": {
     "vscode": {

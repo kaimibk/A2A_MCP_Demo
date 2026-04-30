@@ -12,17 +12,18 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONBUFFERED=1
 
 # Copy the dependency file to the working directory
-COPY ./pyproject.toml .
+COPY ./pyproject.toml ./uv.lock /app/
 
 # Use UV to install dependencies without dev dependencies and without installing the project itself
 RUN uv sync --no-dev --no-install-project
 
 # Copy the application code to the working directory
-COPY main.py .
+COPY ./agent.py .
 
 # Expose the port that the application will run on
 EXPOSE 8000
 
 # Use `uv run` to start the application
 # This automatically uses the virtual environment created by `uv sync` and ensures that the application runs with the correct dependencies
-CMD ["uv", "run", "main.py"]
+# CMD ["uv", "run", "./src/main.py"]
+CMD ["uv", "run", "uvicorn", "agent:a2a_app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,3 +1,6 @@
+include .env
+export $(shell sed 's/=.*//' .env)
+
 .PHONY: post-create test-tools init sync lint format type-check gitignore freeze dev-tools ensure-ipykernel
 
 # Post-create command: run tool verification, init project, and sync dependencies
@@ -81,3 +84,9 @@ freeze:
 	@echo "# Generated on $$(date)" > /tmp/requirements.txt
 	@uv pip freeze >> /tmp/requirements.txt
 	@echo "✓ Dependencies frozen (log: /tmp/requirements.txt)"
+
+web:
+	cd ./services/agents/ && uv run adk web --port 8000 --host 0.0.0.0
+
+agent-return:
+	adk run ./services/agents/agent_returns
