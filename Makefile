@@ -86,7 +86,7 @@ freeze:
 	@echo "✓ Dependencies frozen (log: /tmp/requirements.txt)"
 
 web:
-	cd ./services/agents/ && uv run adk web --port 8000 --host 0.0.0.0
+	cd ./services/agents/ && uv run adk web --port 8888 --host 0.0.0.0
 
 agent-return:
 	adk run ./services/agents/agent_returns
