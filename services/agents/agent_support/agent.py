@@ -6,6 +6,7 @@ from google.adk.agents.remote_a2a_agent import (
 from google.adk.models.lite_llm import LiteLlm
 from google.adk.tools.mcp_tool import McpToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPConnectionParams
+from google.genai import types
 
 # Consume the pre-made MCP
 order_tools = McpToolset(
@@ -33,20 +34,20 @@ root_agent = Agent(
         You are a helpful customer support assistant. Check orders using your tools, and delegate policy questions to the returns expert agent.
         Follow these steps:
             1. When you are asked about an order, use the get_order tool.
-            2. When you are asked about returning an item. First call the get_order function for more information about the order, then pass the result to the returns_expert agent so we strictly follow our returns policies. Then provide the complete answer back to the user.
-
+            2. When you are asked about returning an item. First call the get_order function for more information about the order, then pass the result to the returns_expert agent so we strictly follow our returns policies.
+            3. If you need to verify todays date, use the today_datetime tool. Then you can recall the returns_expert.
         Always clarify the results before proceeding.
     """,
     tools=[order_tools],
     sub_agents=[remote_returns],
-    # generate_content_config=types.GenerateContentConfig(
-    #     safety_settings=[
-    #         types.SafetySetting(
-    #             category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-    #             threshold=types.HarmBlockThreshold.OFF,
-    #         )
-    #     ]
-    # ),
+    generate_content_config=types.GenerateContentConfig(
+        safety_settings=[
+            types.SafetySetting(
+                category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+                threshold=types.HarmBlockThreshold.OFF,
+            )
+        ]
+    ),
 )
 
 # a2a_app = to_a2a(root_agent, port=8000)

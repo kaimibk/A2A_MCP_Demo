@@ -35,6 +35,12 @@ def get_order(order_id: str) -> Order:
     return order_data
 
 
+@mcp.tool()
+def today_datetime() -> datetime:
+    """Get today's date"""
+    return datetime.today()
+
+
 if __name__ == "__main__":
     # Run the FastMCP app
     mcp.run(transport="http", host="0.0.0.0", port=8000)
